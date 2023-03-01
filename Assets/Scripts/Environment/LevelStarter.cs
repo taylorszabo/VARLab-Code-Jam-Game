@@ -9,6 +9,8 @@ public class LevelStarter : MonoBehaviour
     public GameObject countDown1;
     public GameObject countDownGo;
     public GameObject fadeIn;
+    public AudioSource readyFx;
+    public AudioSource goFx;
 
 
     // Start is called before the first frame update
@@ -19,16 +21,18 @@ public class LevelStarter : MonoBehaviour
 
     IEnumerator CountSequence()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         countDown3.SetActive(true);
-
+        readyFx.Play();
         yield return new WaitForSeconds(1f);
         countDown2.SetActive(true);
-
+        readyFx.Play();
         yield return new WaitForSeconds(1f);
         countDown1.SetActive(true);
-
+        readyFx.Play();
         yield return new WaitForSeconds(1f);
         countDownGo.SetActive(true);
+        goFx.Play();
+        PlayerMove.canMove = true;
     }
 }
