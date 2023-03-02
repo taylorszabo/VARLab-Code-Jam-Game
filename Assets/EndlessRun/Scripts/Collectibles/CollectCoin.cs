@@ -18,9 +18,11 @@ public class CollectCoin : MonoBehaviour
 
 	[SerializeField] public AudioSource coinFX;
 
+
 	private void OnTriggerEnter(Collider other)
 	{
 		coinFX.Play();
+		++CollectControl.coinCount;
 		this.gameObject.SetActive(false);
 	}
 }
