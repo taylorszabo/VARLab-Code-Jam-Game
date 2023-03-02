@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenerateLevel : MonoBehaviour
 {
     public GameObject[] sandFloor;
-    public int zPos = 50;
+    public int zPos = 20;
     public bool creatingSection = false;
     public int secNum;
 
@@ -21,7 +21,7 @@ public class GenerateLevel : MonoBehaviour
 
     IEnumerator GenerateSection()
     {
-        secNum = Random.Range(0, 3);
+        secNum = Random.Range(0, 2);
         Instantiate(sandFloor[secNum], new Vector3(0, 0, zPos), Quaternion.identity);
         zPos += 50;
         yield return new WaitForSeconds(2);
