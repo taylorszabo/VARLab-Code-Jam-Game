@@ -12,7 +12,7 @@ public class ObstacleCollision : MonoBehaviour
     {
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
         thePlayer.GetComponent<PlayerMove>().enabled = false;
-        charModel.GetComponent<Animator>().Play("Fox_Falling");
+        charModel.GetComponent<Animator>().PlayInFixedTime("Fox_Falling");
         crashThud.Play();
     }
 }

@@ -12,6 +12,6 @@ public class CollectableControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coinCountDisplay.GetComponent<TextMeshProUGUI>().text = "" + coinCount;
+        coinCountDisplay.GetComponent<TextMeshProUGUI>().text = coinCount.ToString();
     }
 }
