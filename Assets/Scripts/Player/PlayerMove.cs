@@ -8,6 +8,9 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 5;
     public float leftRightSpeed = 4;
     static public bool canMove = false;
+    public bool isJumping = false;
+    public bool comingDown = false;
+    public GameObject playerObject;
  
     // Update is called once per frame
     void Update()
@@ -29,7 +32,39 @@ public class PlayerMove : MonoBehaviour
                     transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);
                 }
             }
+            if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space))
+            {
+                if(isJumping == false)
+                {
+                    isJumping = true;
+                    playerObject.GetComponent<Animator>().Play("Fox_Jump");
+                    StartCoroutine(JumpSequence());
+                }
+            }
+            if(isJumping == true)
+            {
+                if(comingDown==false)
+                {
+                    transform.Translate(Vector3.up * Time.deltaTime * 5, Space.World);
+                }
+                else
+                {
+                    transform.Translate(Vector3.up * Time.deltaTime * -5, Space.World);
+                }
+            }
+
         }
        
+    }
+
+    IEnumerator JumpSequence()
+    {
+        yield return new WaitForSeconds(0.6f);
+        comingDown = true;
+        yield return new WaitForSeconds(0.6f);
+        isJumping = false;
+        comingDown = false;
+        playerObject.GetComponent<Animator>().Play("Fox_Run_InPlace 1");
+
     }
 }
